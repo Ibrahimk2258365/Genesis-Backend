@@ -17,10 +17,7 @@ app.use(express.json()); // To parse JSON payloads
 app.use(bodyParser.urlencoded({ extended: false })); // To parse URL-encoded payloads
 
 // Database Connection
-mongoose.connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/genesimegat' ) // Local fallback if no env var {)
     .then(() => console.log('DB Connected.'))
     .catch((e) => console.error('DB Connection Error:', e));
 
